@@ -1,0 +1,20 @@
+{
+  "name": "advent-of-code",
+  "version": "0.0.0",
+  "description": "This is collection of progression solving the Advent of Code puzzles [Advent of Code](https://adventofcode.com).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/do-kevin/advent-of-code.git"
+  },
+  "keywords": [],
+  "author": "Kevin Do",
+  "bugs": {
+    "url": "https://github.com/do-kevin/advent-of-code/issues"
+  },
+  "homepage": "https://github.com/do-kevin/advent-of-code#readme",
+  "dependencies": {}
+}
