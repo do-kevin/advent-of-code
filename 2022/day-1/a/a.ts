@@ -1,23 +1,30 @@
-const input = await Deno.readTextFile("./input.txt");
+const input = await Deno.readTextFile("../input.txt");
 
-const lines = input.split("\n\n");
+const findMostCalories = (I: string): number => {
+  if (!I || !I.length) console.error("Please enter the input");
 
-let mostCalories = 0;
+  const lines = I.split("\n\n");
 
-let totalElfCalories = 0;
+  let mostCalories = 0;
+  let totalElfCalories = 0;
 
-for (let i = 0; i < lines.length; i++) {
-  const elfCalories = lines[i].split("\n");
+  for (let i = 0; i < lines.length; i++) {
+    const elfCalories = lines[i].split("\n");
 
-  for (let j = 0; j < elfCalories.length; j++) {
-    totalElfCalories += parseInt(elfCalories[j], 10);
+    for (let j = 0; j < elfCalories.length; j++) {
+      totalElfCalories += parseInt(elfCalories[j], 10);
 
-    if (totalElfCalories > mostCalories) {
-      mostCalories = totalElfCalories;
+      if (totalElfCalories > mostCalories) {
+        mostCalories = totalElfCalories;
+      }
     }
+
+    totalElfCalories = 0;
   }
 
-  totalElfCalories = 0;
-}
+  return mostCalories;
+};
 
-console.log(mostCalories);
+const result = findMostCalories(input);
+
+console.log("My puzzle answer is: ", result);
