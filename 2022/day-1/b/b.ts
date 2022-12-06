@@ -2,37 +2,44 @@ import { parseByNewline, parseByTwoNewline } from "../utils.ts";
 
 const input = await Deno.readTextFile("../input.txt");
 
-const findTotalCaloriesFromTopThree = (I: string) => {
-  if (!I || !I.length) console.error("Please enter the input");
+const sortTotalCalories = (I: Array<string>) => {
+  const result = [];
 
-  const lines = parseByTwoNewline(input);
-
-  let total = 0;
-
-  let sortedCalories = [];
-
-  for (let i = 0; i < lines.length; i++) {
+  for (let i = 0; i < I.length; i++) {
     let totalCalories = 0;
-    const elfCalories = parseByNewline(lines[i]);
+    const elfCalories = parseByNewline(I[i]);
 
     for (let j = 0; j < elfCalories.length; j++) {
       totalCalories += parseInt(elfCalories[j], 10);
-      sortedCalories.push(totalCalories);
+      result.push(totalCalories);
     }
   }
 
-  sortedCalories = sortedCalories.sort((a, b) => b - a);
-  sortedCalories = sortedCalories.slice(0, 3);
-
-  console.log("sorted: ", sortedCalories);
-
-  for (let k = 0; k < sortedCalories.length; k++) {
-    total += sortedCalories[k];
-  }
-
-  return total;
+  return result.sort((a, b) => b - a);
 };
 
-const result = findTotalCaloriesFromTopThree(input);
+const countCalories = (calories: Array<number>) => {
+  let count = 0;
+
+  for (let k = 0; k < calories.length; k++) {
+    count += calories[k];
+  }
+
+  return count;
+};
+
+const getTotalSumTopThreeCal = (I: string) => {
+  if (!I || !I.length) throw "Please enter valid input";
+
+  const lines = parseByTwoNewline(I);
+
+  let topThreeCal = [];
+
+  topThreeCal = sortTotalCalories(lines).slice(0, 3);
+
+  return countCalories(topThreeCal);
+};
+
+const result = getTotalSumTopThreeCal(input);
 
 console.log("My puzzle answer is: ", result);
