@@ -1,15 +1,17 @@
+import { parseByNewline, parseByTwoNewline } from "../utils.ts";
+
 const input = await Deno.readTextFile("../input.txt");
 
 const findMostCalories = (I: string): number => {
-  if (!I || !I.length) console.error("Please enter the input");
+  if (!I || !I.length) console.error("Please enter valid input");
 
-  const lines = I.split("\n\n");
+  const lines = parseByTwoNewline(I);
 
   let mostCalories = 0;
   let totalElfCalories = 0;
 
   for (let i = 0; i < lines.length; i++) {
-    const elfCalories = lines[i].split("\n");
+    const elfCalories = parseByNewline(lines[i]);
 
     for (let j = 0; j < elfCalories.length; j++) {
       totalElfCalories += parseInt(elfCalories[j], 10);
